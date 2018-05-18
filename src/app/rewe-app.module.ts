@@ -3,40 +3,44 @@ import {
 } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {L10nLoader, TranslationModule} from 'angular-l10n';
-import { HttpModule } from '@angular/http';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { TerraComponentsModule } from '@plentymarkets/terra-components/app/';
-import { ReweAppComponent } from "./rewe-app.component";
 import { LoadingConfig } from './core/config/loading.config';
 import { AlertConfig } from './core/config/alert.config';
+import {ReweAppComponent} from "./rewe-app.component";
+import {AccountComponent} from "./view/account/account.component";
+import {AccountModule} from "./view/account/account.module";
+import {HttpClientModule} from "@angular/common/http";
 import {l10nConfig} from "./core/config/l10n.config";
-import {SettingsModule} from "./view/settings/settings.module";
+import {BasicComponent} from "./view/settings/basic/basic.component";
+import {BasicModule} from "./view/settings/basic/basic.module";
 
 @NgModule({
     imports:      [
         BrowserModule,
-        HttpModule,
         HttpClientModule,
         FormsModule,
+        ReactiveFormsModule,
         TranslationModule.forRoot(l10nConfig),
         TerraComponentsModule.forRoot(),
-        SettingsModule.forRoot()
+        AccountModule.forRoot(),
+        BasicModule.forRoot(),
     ],
     declarations: [
         ReweAppComponent,
+        AccountComponent,
+        BasicComponent
     ],
 
     providers: [
         LoadingConfig,
-        AlertConfig,
+        AlertConfig
     ],
 
     bootstrap: [
         ReweAppComponent
     ]
 })
-
 
 export class ReweAppModule
 {

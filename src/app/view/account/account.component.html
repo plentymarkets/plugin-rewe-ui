@@ -1,0 +1,30 @@
+<!-- TOOLBAR -->
+<terra-base-toolbar>
+    <terra-button
+            [inputIsDisabled]="isLoading"
+            [inputIcon]="'icon-save'"
+            (outputClicked)="onSaveBtnClicked()">
+    </terra-button>
+</terra-base-toolbar>
+
+<div class="container-fluid">
+    <div class="col-xs-12 col-md-6 col-lg-6">
+        <terra-portlet [inputPortletHeader]="'account.title' | translate:lang">
+            <terra-text-input
+                    class="text_input"
+                    [inputName]="'account.userName' | translate:lang"
+                    [(ngModel)]="userName">
+            </terra-text-input>
+            <terra-text-input
+                    class="text_input"
+                    [inputName]="'account.password' | translate:lang"
+                    [(ngModel)]="password">
+            </terra-text-input>
+            <terra-text-input
+                    class="text_input"
+                    [inputName]="'account.productKey' | translate:lang"
+                    [(ngModel)]="productKey">
+            </terra-text-input>
+        </terra-portlet>
+    </div>
+</div>  
