@@ -1,9 +1,14 @@
 {
   "accessData": {
     "title": "Access data",
-    "userName": "User name",
+    "username": "User name",
     "password": "Password",
-    "productKey": "Product key"
+    "productKey": "Product key",
+    "tooltip": {
+      "username": "Client ID",
+      "password": "Client Secret",
+      "productKey": "Scope"
+    }
   },
   "process": {
     "title": "Process",
@@ -15,11 +20,15 @@
   "sku": {
     "title": "SKU",
     "creation": "Based on:",
-    "variationID": "VariationID",
+    "variationId": "Variation ID",
     "barcode": "Barcode",
     "variationNumber": "Variation number"
   },
   "messages": {
     "save": "Saved"
+  },
+  "settingsAlert": {
+    "saved": "Settings saved.",
+    "notSaved": "Settings not saved."
   }
 }

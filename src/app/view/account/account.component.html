@@ -12,17 +12,20 @@
         <terra-portlet [inputPortletHeader]="'account.title' | translate:lang">
             <terra-text-input
                     class="text_input"
-                    [inputName]="'account.userName' | translate:lang"
-                    [(ngModel)]="userName">
+                    [inputName]="'account.username' | translate:lang"
+					[inputTooltipText]="'account.tooltip.username' | translate:lang"
+                    [(ngModel)]="username">
             </terra-text-input>
             <terra-text-input
                     class="text_input"
                     [inputName]="'account.password' | translate:lang"
+					[inputTooltipText]="'account.tooltip.password' | translate:lang"
                     [(ngModel)]="password">
             </terra-text-input>
             <terra-text-input
                     class="text_input"
                     [inputName]="'account.productKey' | translate:lang"
+					[inputTooltipText]="'account.tooltip.productKey' | translate:lang"
                     [(ngModel)]="productKey">
             </terra-text-input>
         </terra-portlet>

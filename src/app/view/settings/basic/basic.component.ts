@@ -8,7 +8,10 @@ import {
 
 import { LoadingConfig } from '../../../core/config/loading.config';
 import { AlertConfig } from '../../../core/config/alert.config';
-import {TerraCheckboxComponent, TerraSelectBoxValueInterface} from "@plentymarkets/terra-components";
+import {
+    TerraCheckboxComponent, TerraMultiCheckBoxValueInterface,
+    TerraSelectBoxValueInterface
+} from "@plentymarkets/terra-components";
 import {SettingsService} from "../../../core/rest/credentials/settings.service";
 import {isNullOrUndefined} from "util";
 
@@ -72,22 +75,26 @@ export class BasicComponent implements OnInit
     
     ngOnInit():void
     {
+        this.initSkuGeneration();
+        this.loadSettings();
+    }
+    
+    private initSkuGeneration()
+    {
         this._selectableSkuGenerationList.push(
             {
-                value:   0,
-                caption: this.translation.translate('sku.variationID'),
+                value:   'variationId',
+                caption: this.translation.translate('sku.variationId'),
             },
             {
-                value:   1,
+                value:   'barcode',
                 caption: this.translation.translate('sku.barcode'),
             },
             {
-                value:   2,
+                value:   'variationNumber',
                 caption: this.translation.translate('sku.variationNumber'),
             }
         );
-        
-        this.loadSettings();
     }
     
     public loadSettings()

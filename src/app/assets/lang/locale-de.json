@@ -1,9 +1,14 @@
 {
   "account": {
     "title": "Zugangsdaten",
-    "userName": "Benutzername",
+    "username": "Benutzername",
     "password": "Passwort",
-    "productKey": "Produktschlüssel"
+    "productKey": "Produktschlüssel",
+    "tooltip": {
+      "username": "Client-ID",
+      "password": "Client-Secret",
+      "productKey": "Scope"
+    }
   },
   "basic": {
     "process": "Prozesse",
@@ -15,7 +20,7 @@
   "sku": {
     "title": "SKU",
     "creation": "Basierend auf:",
-    "variationID": "VariantenID",
+    "variationId": "Varianten-ID",
     "barcode": "Barcode",
     "variationNumber": "Variantennummer"
   },
@@ -23,7 +28,7 @@
     "save": "Gespeichert"
   },
   "settingsAlert": {
-    "saved": "Einstellungen gespeichert",
-    "notSaved": "Einstellungen konnten nicht gespeichert werden"
+    "saved": "Einstellungen gespeichert.",
+    "notSaved": "Einstellungen nicht gespeichert."
   }
 }

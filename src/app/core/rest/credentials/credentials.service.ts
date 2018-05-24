@@ -5,9 +5,11 @@ import {
     TerraBaseService
 } from '@plentymarkets/terra-components';
 import { Observable } from 'rxjs';
+import {isNullOrUndefined} from "util";
 
 @Injectable()
 export class CredentialsService extends TerraBaseService {
+    public MARKET_NAME = "rewe";
     private bearer: string;
 
     constructor(loadingBarService: TerraLoadingSpinnerService, http: Http) {
@@ -32,7 +34,7 @@ export class CredentialsService extends TerraBaseService {
         this.setAuthorization();
         this.setHeader();
 
-        let url:string = this.url + '?market=REWE';
+        let url:string = this.url + '?market=' + this.MARKET_NAME;
 
         return this.mapRequest(
             this.http.get(url, {
@@ -41,8 +43,20 @@ export class CredentialsService extends TerraBaseService {
             })
         );
     }
+    
+    public saveCredentials(credentials:any):Observable<any>
+    {
+        if(isNullOrUndefined(credentials.id))
+        {
+            return this.createCredentials(credentials);
+        }
+        else
+        {
+            return this.updateCredentials(credentials);
+        }
+    }
 
-    public saveCredentials(credentials:any):Observable<void>
+    public createCredentials(credentials:any):Observable<any>
     {
         this.setAuthorization();
         this.setHeader();
@@ -51,6 +65,23 @@ export class CredentialsService extends TerraBaseService {
 
         return this.mapRequest(
             this.http.post(url,
+                {},
+                {
+                    headers: this.headers,
+                    body:    credentials
+                })
+        );
+    }
+
+    public updateCredentials(credentials:any):Observable<any>
+    {
+        this.setAuthorization();
+        this.setHeader();
+
+        let url:string = this.url + '/' + credentials.id;
+
+        return this.mapRequest(
+            this.http.put(url,
                 {},
                 {
                     headers: this.headers,

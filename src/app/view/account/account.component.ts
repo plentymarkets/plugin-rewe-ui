@@ -24,7 +24,8 @@ export class AccountComponent implements OnInit
     @Language()
     public lang:string;
 
-    private userName:string;
+    private credentialsId:number;
+    private username:string;
     private password:string;
     private productKey:string;
     
@@ -34,7 +35,8 @@ export class AccountComponent implements OnInit
         private _loadingConfig:LoadingConfig,
         private _alertConfig:AlertConfig)
     {
-        this.userName = '';
+        this.credentialsId = null;
+        this.username = '';
         this.password = '';
         this.productKey = '';
     }
@@ -69,7 +71,8 @@ export class AccountComponent implements OnInit
     {
         for(let response of responseList.entries)
         {
-            this.userName = response.data.userName;
+            this.credentialsId = response.id;
+            this.username = response.data.username;
             this.password = response.data.password;
             this.productKey = response.data.productKey;
         }
@@ -85,28 +88,30 @@ export class AccountComponent implements OnInit
         this._loadingConfig.callLoadingEvent(true);
 
         let credentials:any = {
+            id: this.credentialsId,
             data: {
-                userName: this.userName,
+                username: this.username,
                 password: this.password,
                 productKey: this.productKey
             },
             status: "active",
             environment: "production",
-            market: "REWE"
+            market: this._credentialsService.MARKET_NAME
         };
 
+        // create new credentials
         this._credentialsService.saveCredentials(credentials).subscribe(
             response =>
             {
-                this._alertConfig.callStatusEvent(this.translation.translate('settingsAlerts.saved'), 'success');
+                this.credentialsId = response.id;
 
+                this._alertConfig.callStatusEvent(this.translation.translate('settingsAlerts.saved'), 'success');
                 this._loadingConfig.callLoadingEvent(false);
             },
 
             error =>
             {
                 this._alertConfig.callStatusEvent(this.translation.translate('settingsAlerts.notSaved') + ': ' + error.statusText, 'danger');
-
                 this._loadingConfig.callLoadingEvent(false);
             }
         );
