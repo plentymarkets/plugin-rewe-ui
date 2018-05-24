@@ -105,13 +105,13 @@ export class AccountComponent implements OnInit
             {
                 this.credentialsId = response.id;
 
-                this._alertConfig.callStatusEvent(this.translation.translate('settingsAlerts.saved'), 'success');
+                this._alertConfig.callStatusEvent(this.translation.translate('settingsAlert.saved'), 'success');
                 this._loadingConfig.callLoadingEvent(false);
             },
 
             error =>
             {
-                this._alertConfig.callStatusEvent(this.translation.translate('settingsAlerts.notSaved') + ': ' + error.statusText, 'danger');
+                this._alertConfig.callStatusEvent(this.translation.translate('settingsAlert.notSaved') + ': ' + error.statusText, 'danger');
                 this._loadingConfig.callLoadingEvent(false);
             }
         );
