@@ -1,20 +1,21 @@
 import {
     Component,
-    OnInit, ViewChild,
+    OnInit,
+    ViewChild,
 } from '@angular/core';
 import {
-    Language, TranslationService,
+    Language,
+    TranslationService,
 } from 'angular-l10n';
 
 import { LoadingConfig } from '../../../core/config/loading.config';
 import { AlertConfig } from '../../../core/config/alert.config';
 import {
-    TerraCheckboxComponent, TerraMultiCheckBoxValueInterface,
+    TerraCheckboxComponent,
     TerraSelectBoxValueInterface
 } from "@plentymarkets/terra-components";
-import {SettingsService} from "../../../core/rest/credentials/settings.service";
-import {isNullOrUndefined} from "util";
-
+import { SettingsService } from "../../../core/rest/credentials/settings.service";
+import { isNullOrUndefined } from "util";
 
 
 @Component({
@@ -38,14 +39,13 @@ export class BasicComponent implements OnInit
     private priceExport:boolean;
     private orderImport:boolean;
 
-    private _selectableSkuGenerationList: Array<TerraSelectBoxValueInterface> = [];
+    private _selectableSkuGenerationList:Array<TerraSelectBoxValueInterface> = [];
     private _pickedSkuGenerationValue:number;
-    
-    constructor(
-        private _settingsService:SettingsService,
-        public translation:TranslationService,
-        private _loadingConfig:LoadingConfig,
-        private _alertConfig:AlertConfig)
+
+    constructor(private _settingsService:SettingsService,
+                public translation:TranslationService,
+                private _loadingConfig:LoadingConfig,
+                private _alertConfig:AlertConfig)
     {
         this.itemExport = false;
         this.stockExport = false;
@@ -53,33 +53,33 @@ export class BasicComponent implements OnInit
         this.orderImport = false;
     }
 
-    private setItemExportCheckboxValue()
+    protected setItemExportCheckboxValue():void
     {
         this.itemExport = this.viewChildItemExportCheckbox.value;
     }
-    
-    private setStockExportCheckboxValue()
+
+    protected setStockExportCheckboxValue():void
     {
         this.stockExport = this.viewChildStockExportCheckbox.value;
     }
 
-    private setPriceExportCheckboxValue()
+    protected setPriceExportCheckboxValue():void
     {
         this.priceExport = this.viewChildPriceExportCheckbox.value;
     }
 
-    private setOrderImportCheckboxValue()
+    protected setOrderImportCheckboxValue():void
     {
         this.orderImport = this.viewChildOrderImportCheckbox.value;
     }
-    
-    ngOnInit():void
+
+    public ngOnInit():void
     {
         this.initSkuGeneration();
         this.loadSettings();
     }
-    
-    private initSkuGeneration()
+
+    private initSkuGeneration():void
     {
         this._selectableSkuGenerationList.push(
             {
@@ -96,8 +96,8 @@ export class BasicComponent implements OnInit
             }
         );
     }
-    
-    public loadSettings()
+
+    public loadSettings():void
     {
         this._loadingConfig.callLoadingEvent(true);
         this._settingsService.getSettings().subscribe(
@@ -120,8 +120,8 @@ export class BasicComponent implements OnInit
             }
         );
     }
-    
-    private mapSettings(responseList:any)
+
+    private mapSettings(responseList:any):void
     {
         if(!isNullOrUndefined(responseList.settings) && responseList.settings.orderImport === true)
         {
@@ -153,20 +153,20 @@ export class BasicComponent implements OnInit
         }
     }
 
-    private onSaveBtnClicked()
+    protected onSaveBtnClicked():void
     {
         this.saveSettings();
     }
 
-    private saveSettings()
+    private saveSettings():void
     {
         this._loadingConfig.callLoadingEvent(true);
 
         let settings:any = {
-            orderImport: this.orderImport,
-            stockExport: this.stockExport,
-            itemExport: this.itemExport,
-            priceExport: this.priceExport,
+            orderImport:   this.orderImport,
+            stockExport:   this.stockExport,
+            itemExport:    this.itemExport,
+            priceExport:   this.priceExport,
             skuGeneration: this._pickedSkuGenerationValue
         };
 

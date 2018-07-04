@@ -1,4 +1,5 @@
 import {
+    APP_INITIALIZER,
     NgModule
 } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -34,7 +35,13 @@ import {BasicModule} from "./view/settings/basic/basic.module";
 
     providers: [
         LoadingConfig,
-        AlertConfig
+        AlertConfig,
+        {
+            provide:    APP_INITIALIZER,
+            useFactory: initL10n,
+            deps:       [L10nLoader],
+            multi:      true
+        }
     ],
 
     bootstrap: [
@@ -48,4 +55,9 @@ export class ReweAppModule
     {
         this.l10nLoader.load();
     }
+}
+
+function initL10n(l10nLoader:L10nLoader):Function
+{
+    return ():Promise<void> => l10nLoader.load();
 }
