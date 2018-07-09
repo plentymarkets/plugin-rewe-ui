@@ -180,7 +180,7 @@ export class BasicComponent implements OnInit
 
             error =>
             {
-                this._alertConfig.callStatusEvent(this.translation.translate('settingsAlert.notSaved') + ': ' + error.statusText, 'danger');
+                this._alertConfig.callStatusEvent(this.translation.translate('settingsAlerts.notSaved') + ': ' + error.statusText, 'danger');
 
                 this._loadingConfig.callLoadingEvent(false);
             }
