@@ -1,9 +1,9 @@
 <!-- TOOLBAR -->
 <terra-base-toolbar>
     <terra-button
-            [inputIsDisabled]="isLoading"
-            [inputIcon]="'icon-save'"
-            (outputClicked)="onSaveBtnClicked()">
+        [inputIsDisabled]="isLoading"
+        [inputIcon]="'icon-save'"
+        (outputClicked)="onSaveBtnClicked()">
     </terra-button>
 </terra-base-toolbar>
 
@@ -11,31 +11,31 @@
     <div class="col-xs-12 col-md-6 col-lg-6">
         <terra-portlet [inputPortletHeader]="'basic.process' | translate:lang">
             <terra-checkbox
-                    [inputCaption]="'basic.itemExport' | translate:lang"
-                    (valueChange)="setItemExportCheckboxValue()"
-                    #viewChildItemExportCheckbox>
+                [inputCaption]="'basic.itemExport' | translate:lang"
+                (valueChange)="setItemExportCheckboxValue()"
+                #viewChildItemExportCheckbox>
             </terra-checkbox>
             <terra-checkbox
-                    [inputCaption]="'basic.stockExport' | translate:lang"
-                    (valueChange)="setStockExportCheckboxValue()"
-                    #viewChildStockExportCheckbox>
+                [inputCaption]="'basic.stockExport' | translate:lang"
+                (valueChange)="setStockExportCheckboxValue()"
+                #viewChildStockExportCheckbox>
             </terra-checkbox>
             <terra-checkbox
-                    [inputCaption]="'basic.priceExport' | translate:lang"
-                    (valueChange)="setPriceExportCheckboxValue()"
-                    #viewChildPriceExportCheckbox>
+                [inputCaption]="'basic.priceExport' | translate:lang"
+                (valueChange)="setPriceExportCheckboxValue()"
+                #viewChildPriceExportCheckbox>
             </terra-checkbox>
             <terra-checkbox
-                    [inputCaption]="'basic.orderImport' | translate:lang"
-                    (valueChange)="setOrderImportCheckboxValue()"
-                    #viewChildOrderImportCheckbox>
+                [inputCaption]="'basic.orderImport' | translate:lang"
+                (valueChange)="setOrderImportCheckboxValue()"
+                #viewChildOrderImportCheckbox>
             </terra-checkbox>
         </terra-portlet>
         <terra-portlet [inputPortletHeader]="'sku.title' | translate:lang">
             <terra-select-box
-                    [inputName]="'sku.creation' | translate:lang"
-                    [inputListBoxValues]="_selectableSkuGenerationList"
-                    [(ngModel)]="_pickedSkuGenerationValue">
+                [inputName]="'sku.creation' | translate:lang"
+				[inputListBoxValues]="_selectableSkuGenerationList"
+                [(ngModel)]="_pickedSkuGenerationValue">
             </terra-select-box>
         </terra-portlet>
     </div>
