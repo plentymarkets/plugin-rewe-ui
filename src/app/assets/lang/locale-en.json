@@ -42,6 +42,7 @@
   "settingsAlert": {
     "saved": "Settings saved.",
     "notSaved": "Settings not saved.",
+    "taxCategoriesFailed": "Date of the last update of tax categories not loaded.",
     "syncSuccess": "Tax categories synced",
     "syncFailed": "Tax categories not synced"
   }

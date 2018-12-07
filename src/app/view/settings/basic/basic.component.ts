@@ -121,13 +121,12 @@ export class BasicComponent implements OnInit
             {
                 this.lastUpdate = new Date(response.updatedAt).toLocaleString();
 
-                this._alertConfig.callStatusEvent(this.translation.translate('settingsAlert.syncSuccess'), 'success');
                 this._loadingConfig.callLoadingEvent(false);
             },
 
             error =>
             {
-                this._alertConfig.callStatusEvent(this.translation.translate('settingsAlerts.syncFailed') + ': ' + error.statusText, 'danger');
+                this._alertConfig.callStatusEvent(this.translation.translate('settingsAlerts.taxCategoriesFailed') + ': ' + error.statusText, 'danger');
                 this._loadingConfig.callLoadingEvent(false);
             }
         );

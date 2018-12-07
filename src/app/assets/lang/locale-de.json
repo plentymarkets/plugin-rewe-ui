@@ -35,6 +35,7 @@
   "settingsAlert": {
     "saved": "Einstellungen gespeichert.",
     "notSaved": "Einstellungen nicht gespeichert.",
+    "taxCategoriesFailed": "Aktualisierungsdatum der Steuerklassen nicht geladen.",
     "syncSuccess": "Steuerklassen synchronisiert",
     "syncFailed": "Steuerklassen nicht synchronisiert"
   }
