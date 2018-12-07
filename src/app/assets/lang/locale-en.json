@@ -10,6 +10,18 @@
       "productKey": "Scope"
     }
   },
+  "basic": {
+    "process": "Prozesse",
+    "itemExport": "Artikelexport",
+    "stockExport": "Bestandsabgleich",
+    "priceExport": "Preisabgleich",
+    "orderImport": "Auftragsimport",
+    "taxCategories": {
+      "taxCategories": "Steuerklassen",
+      "lastUpdate": "Letzte Aktualisierung",
+      "sync": "Sync"
+    }
+  },
   "process": {
     "title": "Process",
     "itemExport": "Item export",
@@ -29,6 +41,8 @@
   },
   "settingsAlert": {
     "saved": "Settings saved.",
-    "notSaved": "Settings not saved."
+    "notSaved": "Settings not saved.",
+    "syncSuccess": "Tax categories synced",
+    "syncFailed": "Tax categories not synced"
   }
 }

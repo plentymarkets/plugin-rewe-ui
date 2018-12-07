@@ -11,6 +11,7 @@ import {
 import { LoadingConfig } from '../../../core/config/loading.config';
 import { AlertConfig } from '../../../core/config/alert.config';
 import {
+    TerraButtonInterface,
     TerraCheckboxComponent,
     TerraSelectBoxValueInterface
 } from "@plentymarkets/terra-components";
@@ -41,6 +42,10 @@ export class BasicComponent implements OnInit
 
     private _selectableSkuGenerationList:Array<TerraSelectBoxValueInterface> = [];
     private _pickedSkuGenerationValue:number;
+    private _syncTaxCategoriesButtonList:Array<TerraButtonInterface> = [];
+    
+    private taxCategories:any;
+    private lastUpdate:string;
 
     constructor(private _settingsService:SettingsService,
                 public translation:TranslationService,
@@ -51,6 +56,9 @@ export class BasicComponent implements OnInit
         this.stockExport = false;
         this.priceExport = false;
         this.orderImport = false;
+
+        this.taxCategories = null;
+        this.lastUpdate = '';
     }
 
     protected setItemExportCheckboxValue():void
@@ -75,8 +83,18 @@ export class BasicComponent implements OnInit
 
     public ngOnInit():void
     {
+        this.initTaxCategoriesButtonList();
         this.initSkuGeneration();
+        this.initTaxCategories();
         this.loadSettings();
+    }
+    
+    private initTaxCategoriesButtonList() {
+        this._syncTaxCategoriesButtonList.push({
+            icon: "icon-process_loop",
+            tooltipText: this.translation.translate('basic.taxCategories.sync'),
+            clickFunction: ():void => this.syncTaxCategories()
+        });
     }
 
     private initSkuGeneration():void
@@ -93,6 +111,24 @@ export class BasicComponent implements OnInit
             {
                 value:   'variationNumber',
                 caption: this.translation.translate('sku.variationNumber'),
+            }
+        );
+    }
+
+    private initTaxCategories() {
+        this._settingsService.getTaxCategories().subscribe(
+            response =>
+            {
+                this.lastUpdate = new Date(response.updatedAt).toLocaleString();
+
+                this._alertConfig.callStatusEvent(this.translation.translate('settingsAlert.syncSuccess'), 'success');
+                this._loadingConfig.callLoadingEvent(false);
+            },
+
+            error =>
+            {
+                this._alertConfig.callStatusEvent(this.translation.translate('settingsAlerts.syncFailed') + ': ' + error.statusText, 'danger');
+                this._loadingConfig.callLoadingEvent(false);
             }
         );
     }
@@ -174,14 +210,30 @@ export class BasicComponent implements OnInit
             response =>
             {
                 this._alertConfig.callStatusEvent(this.translation.translate('settingsAlert.saved'), 'success');
-
                 this._loadingConfig.callLoadingEvent(false);
             },
 
             error =>
             {
                 this._alertConfig.callStatusEvent(this.translation.translate('settingsAlerts.notSaved') + ': ' + error.statusText, 'danger');
+                this._loadingConfig.callLoadingEvent(false);
+            }
+        );
+    }
+    
+    private syncTaxCategories() {
+        this._settingsService.syncTaxCategories().subscribe(
+            response =>
+            {
+                this.lastUpdate = new Date(response.updatedAt).toLocaleString();
+                
+                this._alertConfig.callStatusEvent(this.translation.translate('settingsAlert.syncSuccess'), 'success');
+                this._loadingConfig.callLoadingEvent(false);
+            },
 
+            error =>
+            {
+                this._alertConfig.callStatusEvent(this.translation.translate('settingsAlerts.syncFailed') + ': ' + error.statusText, 'danger');
                 this._loadingConfig.callLoadingEvent(false);
             }
         );

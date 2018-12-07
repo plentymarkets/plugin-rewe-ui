@@ -15,7 +15,12 @@
     "itemExport": "Artikelexport",
     "stockExport": "Bestandsabgleich",
     "priceExport": "Preisabgleich",
-    "orderImport": "Auftragsimport"
+    "orderImport": "Auftragsimport",
+    "taxCategories": {
+      "taxCategories": "Steuerklassen",
+      "lastUpdate": "Letzte Aktualisierung",
+      "sync": "Synchronisieren"
+    }
   },
   "sku": {
     "title": "SKU",
@@ -29,6 +34,8 @@
   },
   "settingsAlert": {
     "saved": "Einstellungen gespeichert.",
-    "notSaved": "Einstellungen nicht gespeichert."
+    "notSaved": "Einstellungen nicht gespeichert.",
+    "syncSuccess": "Steuerklassen synchronisiert",
+    "syncFailed": "Steuerklassen nicht synchronisiert"
   }
 }
