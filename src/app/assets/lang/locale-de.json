@@ -22,6 +22,11 @@
       "sync": "Synchronisieren"
     }
   },
+  "shipping": {
+    "shippingProviderMapping": "Versanddienstleisterverknüpfung",
+    "shippingProvider": "Versanddienstleister",
+    "shippingProviderRewe": "REWE Versanddienstleister"
+  },
   "sku": {
     "title": "SKU",
     "creation": "Basierend auf:",

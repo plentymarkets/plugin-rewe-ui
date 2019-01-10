@@ -1,0 +1,26 @@
+<terra-base-toolbar>
+    <terra-button
+        [inputIsDisabled]="isLoading"
+        [inputIcon]="'icon-save'"
+        (outputClicked)="onSaveBtnClicked()">
+    </terra-button>
+</terra-base-toolbar>
+
+<div class="container-fluid">
+    <div class="row">
+        <ng-template ngFor let-shippingShippingServiceProviderMapping [ngForOf]="_shippingServiceProviderMappingList">
+            <div class="col-xs-12 col-md-4 col-lg-4">
+                <terra-info-box>
+                    <span body>
+                        <b>{{ 'shipping.shippingProvider' | translate:lang }}: </b> {{shippingShippingServiceProviderMapping.name}}
+                        <terra-select-box
+                            [inputListBoxValues]="_reweShippingCarrierList"
+                            [(ngModel)]="shippingShippingServiceProviderMapping.value"
+                            [inputName]="'shipping.shippingProviderRewe' | translate:lang">
+                        </terra-select-box>
+                    </span>
+                </terra-info-box>
+            </div>
+        </ng-template>
+    </div>
+</div>  

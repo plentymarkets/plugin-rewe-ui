@@ -15,6 +15,8 @@ import {HttpClientModule} from "@angular/common/http";
 import {l10nConfig} from "./core/config/l10n.config";
 import {BasicComponent} from "./view/settings/basic/basic.component";
 import {BasicModule} from "./view/settings/basic/basic.module";
+import { ShippingComponent } from './view/shipping/shipping.component';
+import { ShippingModule } from './view/shipping/shipping.module';
 
 @NgModule({
     imports:      [
@@ -26,11 +28,13 @@ import {BasicModule} from "./view/settings/basic/basic.module";
         TerraComponentsModule.forRoot(),
         AccountModule.forRoot(),
         BasicModule.forRoot(),
+        ShippingModule.forRoot(),
     ],
     declarations: [
         ReweAppComponent,
         AccountComponent,
-        BasicComponent
+        BasicComponent,
+        ShippingComponent
     ],
 
     providers: [

@@ -22,6 +22,11 @@
       "sync": "Sync"
     }
   },
+  "shipping": {
+    "shippingProviderMapping": "Shipping service provider mapping",
+    "shippingProvider": "Shipping carrier",
+    "shippingProviderRewe": "REWE shipping carrier"
+  },
   "process": {
     "title": "Process",
     "itemExport": "Item export",
