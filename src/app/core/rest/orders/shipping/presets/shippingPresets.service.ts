@@ -11,7 +11,7 @@ export class ShippingPresetsService extends TerraBaseService {
     private bearer: string;
 
     constructor(loadingBarService: TerraLoadingSpinnerService, http: Http) {
-        super(loadingBarService, http, '/rest/orders/shipping/presets');
+        super(loadingBarService, http, '/rest/orders/shipping/parcels/preview');
 
         if (process.env.ENV !== 'production') {
             this.bearer = process.env.TOKEN;

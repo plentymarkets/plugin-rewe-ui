@@ -126,11 +126,11 @@ export class ShippingComponent implements OnInit
                             if(!isNullOrUndefined(mappingResponse))
                             {
                                 for(let mapping of mappingResponse) {
-                                    for(let preset of presetsResponse) {
-                                        if(preset.parcelServiceId == mapping.id) {
+                                    for(let key in presetsResponse) {
+                                        if(key == mapping.id) {
                                             this._shippingServiceProviderMappingList.push({
                                                 parcelServiceId: mapping.id,
-                                                name: preset.backendName,
+                                                name: presetsResponse[key],
                                                 value: mapping.name
                                             });
                                             
