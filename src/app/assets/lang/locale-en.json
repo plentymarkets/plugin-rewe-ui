@@ -29,7 +29,7 @@
   },
   "returns": {
     "returnReason": "Return reason",
-    "reweReturnReason": "REWE return reason",
+    "reweReturnReason": "REWE return reason"
   },
   "process": {
     "title": "Process",

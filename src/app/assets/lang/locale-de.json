@@ -29,7 +29,7 @@
   },
   "returns": {
     "returnReason": "Retourengrund",
-    "reweReturnReason": "REWE Retourengrund",
+    "reweReturnReason": "REWE Retourengrund"
   },
   "sku": {
     "title": "SKU",
