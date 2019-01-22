@@ -27,6 +27,10 @@
     "shippingProvider": "Shipping carrier",
     "shippingProviderRewe": "REWE shipping carrier"
   },
+  "returns": {
+    "returnReason": "Return reason",
+    "reweReturnReason": "REWE return reason",
+  },
   "process": {
     "title": "Process",
     "itemExport": "Item export",

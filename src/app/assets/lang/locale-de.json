@@ -27,6 +27,10 @@
     "shippingProvider": "Versanddienstleister",
     "shippingProviderRewe": "REWE Versanddienstleister"
   },
+  "returns": {
+    "returnReason": "Retourengrund",
+    "reweReturnReason": "REWE Retourengrund",
+  },
   "sku": {
     "title": "SKU",
     "creation": "Basierend auf:",

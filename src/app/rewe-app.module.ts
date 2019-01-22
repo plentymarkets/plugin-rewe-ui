@@ -17,6 +17,8 @@ import {BasicComponent} from "./view/settings/basic/basic.component";
 import {BasicModule} from "./view/settings/basic/basic.module";
 import { ShippingComponent } from './view/shipping/shipping.component';
 import { ShippingModule } from './view/shipping/shipping.module';
+import { ReturnsModule } from './view/returns/returns.module';
+import { ReturnsComponent } from './view/returns/returns.component';
 
 @NgModule({
     imports:      [
@@ -29,12 +31,14 @@ import { ShippingModule } from './view/shipping/shipping.module';
         AccountModule.forRoot(),
         BasicModule.forRoot(),
         ShippingModule.forRoot(),
+        ReturnsModule.forRoot(),
     ],
     declarations: [
         ReweAppComponent,
         AccountComponent,
         BasicComponent,
-        ShippingComponent
+        ShippingComponent,
+        ReturnsComponent
     ],
 
     providers: [
