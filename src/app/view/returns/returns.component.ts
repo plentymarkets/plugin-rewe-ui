@@ -142,7 +142,7 @@ export class ReturnsComponent implements OnInit
                             {
                                 for(let mapping of mappingResponse) {
                                     for(let key in returnReasonsResponse) {
-                                        if(key == mapping.id) {
+                                        if(returnReasonsResponse[key]['id'] == mapping.id) {
                                             let i = 1;
                                             this._returnReasonMappingList.push({
                                                 id: mapping.id,
