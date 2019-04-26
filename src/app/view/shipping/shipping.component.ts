@@ -127,7 +127,7 @@ export class ShippingComponent implements OnInit
                             {
                                 for(let mapping of mappingResponse) {
                                     for(let key in presetsResponse) {
-                                        if(presetsResponse[key]['id'] == mapping.id) {
+                                        if(key == mapping.id) {
                                             this._shippingServiceProviderMappingList.push({
                                                 parcelServiceId: mapping.id,
                                                 name: presetsResponse[key],
