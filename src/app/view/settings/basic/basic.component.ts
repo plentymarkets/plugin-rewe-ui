@@ -31,19 +31,15 @@ export class BasicComponent implements OnInit
     public lang:string;
 
     @ViewChild('viewChildItemExportCheckbox') viewChildItemExportCheckbox:TerraCheckboxComponent;
-    @ViewChild('viewChildStockExportCheckbox') viewChildStockExportCheckbox:TerraCheckboxComponent;
-    @ViewChild('viewChildPriceExportCheckbox') viewChildPriceExportCheckbox:TerraCheckboxComponent;
+    @ViewChild('viewChildOfferExportCheckbox') viewChildOfferCheckbox:TerraCheckboxComponent;
     @ViewChild('viewChildOrderImportCheckbox') viewChildOrderImportCheckbox:TerraCheckboxComponent;
 
     private itemExport:boolean;
-    private stockExport:boolean;
-    private priceExport:boolean;
+    private offerExport:boolean;
     private orderImport:boolean;
 
-    private _selectableSkuGenerationList:Array<TerraSelectBoxValueInterface> = [];
-    private _pickedSkuGenerationValue:number;
     private _syncTaxCategoriesButtonList:Array<TerraButtonInterface> = [];
-    
+
     private taxCategories:any;
     private lastUpdate:string;
 
@@ -53,8 +49,6 @@ export class BasicComponent implements OnInit
                 private _alertConfig:AlertConfig)
     {
         this.itemExport = false;
-        this.stockExport = false;
-        this.priceExport = false;
         this.orderImport = false;
 
         this.taxCategories = null;
@@ -66,14 +60,9 @@ export class BasicComponent implements OnInit
         this.itemExport = this.viewChildItemExportCheckbox.value;
     }
 
-    protected setStockExportCheckboxValue():void
+    protected setOfferExportCheckboxValue():void
     {
-        this.stockExport = this.viewChildStockExportCheckbox.value;
-    }
-
-    protected setPriceExportCheckboxValue():void
-    {
-        this.priceExport = this.viewChildPriceExportCheckbox.value;
+        this.offerExport = this.viewChildOfferCheckbox.value;
     }
 
     protected setOrderImportCheckboxValue():void
@@ -84,35 +73,16 @@ export class BasicComponent implements OnInit
     public ngOnInit():void
     {
         this.initTaxCategoriesButtonList();
-        this.initSkuGeneration();
         this.initTaxCategories();
         this.loadSettings();
     }
-    
+
     private initTaxCategoriesButtonList() {
         this._syncTaxCategoriesButtonList.push({
             icon: "icon-process_loop",
             tooltipText: this.translation.translate('basic.taxCategories.sync'),
             clickFunction: ():void => this.syncTaxCategories()
         });
-    }
-
-    private initSkuGeneration():void
-    {
-        this._selectableSkuGenerationList.push(
-            {
-                value:   'variationId',
-                caption: this.translation.translate('sku.variationId'),
-            },
-            {
-                value:   'barcode',
-                caption: this.translation.translate('sku.barcode'),
-            },
-            {
-                value:   'variationNumber',
-                caption: this.translation.translate('sku.variationNumber'),
-            }
-        );
     }
 
     private initTaxCategories() {
@@ -166,25 +136,14 @@ export class BasicComponent implements OnInit
 
         if(!isNullOrUndefined(responseList.settings) && responseList.settings.stockExport === true)
         {
-            this.viewChildStockExportCheckbox.value = responseList.settings.stockExport;
-            this.stockExport = responseList.settings.stockExport;
+            this.viewChildOfferCheckbox.value = responseList.settings.stockExport;
+            this.offerExport = responseList.settings.stockExport;
         }
 
         if(!isNullOrUndefined(responseList.settings) && responseList.settings.itemExport === true)
         {
             this.viewChildItemExportCheckbox.value = responseList.settings.itemExport;
             this.itemExport = responseList.settings.itemExport;
-        }
-
-        if(!isNullOrUndefined(responseList.settings) && responseList.settings.priceExport === true)
-        {
-            this.viewChildPriceExportCheckbox.value = responseList.settings.priceExport;
-            this.priceExport = responseList.settings.priceExport;
-        }
-
-        if(!isNullOrUndefined(responseList.settings))
-        {
-            this._pickedSkuGenerationValue = responseList.settings.skuGeneration;
         }
     }
 
@@ -199,10 +158,8 @@ export class BasicComponent implements OnInit
 
         let settings:any = {
             orderImport:   this.orderImport,
-            stockExport:   this.stockExport,
-            itemExport:    this.itemExport,
-            priceExport:   this.priceExport,
-            skuGeneration: this._pickedSkuGenerationValue
+            offerExport:   this.offerExport,
+            itemExport:    this.itemExport
         };
 
         this._settingsService.saveSettings(settings).subscribe(
@@ -219,13 +176,13 @@ export class BasicComponent implements OnInit
             }
         );
     }
-    
+
     private syncTaxCategories() {
         this._settingsService.syncTaxCategories().subscribe(
             response =>
             {
                 this.lastUpdate = new Date(response.updatedAt).toLocaleString();
-                
+
                 this._alertConfig.callStatusEvent(this.translation.translate('settingsAlert.syncSuccess'), 'success');
                 this._loadingConfig.callLoadingEvent(false);
             },

@@ -11,14 +11,13 @@
     }
   },
   "basic": {
-    "process": "Prozesse",
-    "itemExport": "Artikelexport",
-    "stockExport": "Bestandsabgleich",
-    "priceExport": "Preisabgleich",
-    "orderImport": "Auftragsimport",
+    "process": "Processes",
+    "itemExport": "Item export",
+    "offerExport": "Stock and price update",
+    "orderImport": "Order import",
     "taxCategories": {
-      "taxCategories": "Steuerklassen",
-      "lastUpdate": "Letzte Aktualisierung",
+      "taxCategories": "TAX categories",
+      "lastUpdate": "Last update",
       "sync": "Sync"
     }
   },

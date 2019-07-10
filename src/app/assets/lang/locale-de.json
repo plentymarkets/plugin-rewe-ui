@@ -13,8 +13,7 @@
   "basic": {
     "process": "Prozesse",
     "itemExport": "Artikelexport",
-    "stockExport": "Bestandsabgleich",
-    "priceExport": "Preisabgleich",
+    "offerExport": "Bestands- und Preisabgleich",
     "orderImport": "Auftragsimport",
     "taxCategories": {
       "taxCategories": "Steuerklassen",
