@@ -37,6 +37,7 @@ export class BasicComponent implements OnInit
     private itemExport:boolean;
     private offerExport:boolean;
     private orderImport:boolean;
+    private commission:number;
 
     private _syncTaxCategoriesButtonList:Array<TerraButtonInterface> = [];
 
@@ -53,6 +54,8 @@ export class BasicComponent implements OnInit
 
         this.taxCategories = null;
         this.lastUpdate = '';
+
+        this.commission = 0;
     }
 
     protected setItemExportCheckboxValue():void
@@ -145,6 +148,11 @@ export class BasicComponent implements OnInit
             this.viewChildItemExportCheckbox.value = responseList.settings.itemExport;
             this.itemExport = responseList.settings.itemExport;
         }
+
+        if(!isNullOrUndefined(responseList.settings) && !isNullOrUndefined(responseList.settings.commissionDefault))
+        {
+            this.commission = responseList.settings.commissionDefault;
+        }
     }
 
     protected onSaveBtnClicked():void
@@ -159,7 +167,8 @@ export class BasicComponent implements OnInit
         let settings:any = {
             orderImport:   this.orderImport,
             offerExport:   this.offerExport,
-            itemExport:    this.itemExport
+            itemExport:    this.itemExport,
+            commissionDefault: this.commission
         };
 
         this._settingsService.saveSettings(settings).subscribe(

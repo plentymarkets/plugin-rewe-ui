@@ -15,6 +15,10 @@
     "itemExport": "Item export",
     "offerExport": "Stock and price update",
     "orderImport": "Order import",
+    "commission": {
+      "commission": "Commission",
+      "commissionInPercent": "Commission in percent"
+    },
     "taxCategories": {
       "taxCategories": "TAX categories",
       "lastUpdate": "Last update",
