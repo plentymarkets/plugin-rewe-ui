@@ -26,30 +26,18 @@
                 #viewChildOrderImportCheckbox>
             </terra-checkbox>
         </terra-portlet>
+    
+        <terra-portlet [inputPortletHeader]="'basic.commission.commission' | translate:lang">
+            <terra-number-input
+                [inputName]="'basic.commission.commissionInPercent' | translate:lang"
+                [(ngModel)]="commission">
+            </terra-number-input>
+        </terra-portlet>
+        
         <terra-portlet
             [inputPortletHeader]="'basic.taxCategories.taxCategories' | translate:lang"
             [inputButtonList]="_syncTaxCategoriesButtonList">
             <b>{{'basic.taxCategories.lastUpdate' | translate:lang}}:</b> {{lastUpdate}}
-            <!--<terra-info-box>-->
-                <!--<span body>-->
-                    <!--<b>{{'basic.taxCategories.lastUpdate' | translate:lang}}:</b> "DATUM"-->
-                <!--</span>-->
-                <!--<div buttons>-->
-                    <!--<terra-button [inputIcon]="'icon-process_loop'"-->
-                                  <!--[inputTooltipText]="'sync'"-->
-                                  <!--(outputClicked)="syncTaxCategories()">-->
-                    <!--</terra-button>-->
-                <!--</div>-->
-            <!--</terra-info-box>-->
-            <!--<div class="container-fluid">-->
-                <!--<div class="row">-->
-                    <!--<div class="col-md-8">-->
-                    <!--</div>-->
-                    <!--<div class="col-md-4">-->
-                        <!--Letzte Aktualisierung: "DATUM"-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
         </terra-portlet>
     </div>
 </div>

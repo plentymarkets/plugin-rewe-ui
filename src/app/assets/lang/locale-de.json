@@ -15,6 +15,10 @@
     "itemExport": "Artikelexport",
     "offerExport": "Bestands- und Preisabgleich",
     "orderImport": "Auftragsimport",
+    "commission": {
+      "commission": "Provision",
+      "commissionInPercent": "Provision in Prozent"
+    },
     "taxCategories": {
       "taxCategories": "Steuerklassen",
       "lastUpdate": "Letzte Aktualisierung",
