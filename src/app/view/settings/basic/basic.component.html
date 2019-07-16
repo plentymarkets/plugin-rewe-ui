@@ -16,9 +16,14 @@
                 #viewChildItemExportCheckbox>
             </terra-checkbox>
             <terra-checkbox
-                [inputCaption]="'basic.offerExport' | translate:lang"
-                (valueChange)="setOfferExportCheckboxValue()"
-                #viewChildOfferExportCheckbox>
+                [inputCaption]="'basic.stockExport' | translate:lang"
+                (valueChange)="setStockExportCheckboxValue()"
+                #viewChildStockExportCheckbox>
+            </terra-checkbox>
+            <terra-checkbox
+                [inputCaption]="'basic.priceExport' | translate:lang"
+                (valueChange)="setPriceExportCheckboxValue()"
+                #viewChildPriceExportCheckbox>
             </terra-checkbox>
             <terra-checkbox
                 [inputCaption]="'basic.orderImport' | translate:lang"
@@ -26,14 +31,19 @@
                 #viewChildOrderImportCheckbox>
             </terra-checkbox>
         </terra-portlet>
-    
         <terra-portlet [inputPortletHeader]="'basic.commission.commission' | translate:lang">
             <terra-number-input
                 [inputName]="'basic.commission.commissionInPercent' | translate:lang"
                 [(ngModel)]="commission">
             </terra-number-input>
         </terra-portlet>
-        
+        <terra-portlet [inputPortletHeader]="'sku.title' | translate:lang">
+            <terra-select-box
+                [inputName]="'sku.creation' | translate:lang"
+				[inputListBoxValues]="_selectableSkuGenerationList"
+                [(ngModel)]="_pickedSkuGenerationValue">
+            </terra-select-box>
+        </terra-portlet>
         <terra-portlet
             [inputPortletHeader]="'basic.taxCategories.taxCategories' | translate:lang"
             [inputButtonList]="_syncTaxCategoriesButtonList">

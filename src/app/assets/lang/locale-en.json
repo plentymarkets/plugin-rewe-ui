@@ -13,12 +13,13 @@
   "basic": {
     "process": "Processes",
     "itemExport": "Item export",
-    "offerExport": "Stock and price update",
     "orderImport": "Order import",
     "commission": {
       "commission": "Commission",
       "commissionInPercent": "Commission in percent"
     },
+    "stockExport": "Stock update",
+    "priceExport": "Price update",
     "taxCategories": {
       "taxCategories": "TAX categories",
       "lastUpdate": "Last update",

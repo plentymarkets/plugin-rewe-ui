@@ -13,7 +13,8 @@
   "basic": {
     "process": "Prozesse",
     "itemExport": "Artikelexport",
-    "offerExport": "Bestands- und Preisabgleich",
+    "stockExport": "Bestandsabgleich",
+    "priceExport": "Preisabgleich",
     "orderImport": "Auftragsimport",
     "commission": {
       "commission": "Provision",
