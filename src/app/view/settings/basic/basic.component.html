@@ -26,6 +26,12 @@
                 #viewChildOrderImportCheckbox>
             </terra-checkbox>
         </terra-portlet>
+        <terra-portlet [inputPortletHeader]="'basic.commission.commission' | translate:lang">
+            <terra-number-input
+                [inputName]="'basic.commission.commissionInPercent' | translate:lang"
+                [(ngModel)]="commission">
+            </terra-number-input>
+        </terra-portlet>
         <terra-portlet
             [inputPortletHeader]="'basic.taxCategories.taxCategories' | translate:lang"
             [inputButtonList]="_syncTaxCategoriesButtonList">
