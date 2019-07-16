@@ -19,6 +19,10 @@
       "taxCategories": "Steuerklassen",
       "lastUpdate": "Letzte Aktualisierung",
       "sync": "Synchronisieren"
+    },
+    "commission": {
+      "commission": "Provision",
+      "commissionInPercent": "Provision in Prozent"
     }
   },
   "shipping": {
@@ -29,6 +33,12 @@
   "returns": {
     "returnReason": "Retourengrund",
     "reweReturnReason": "REWE Retourengrund"
+  },
+  "process": {
+    "title": "Prozess",
+    "itemExport": "Artikelexport",
+    "offerExport": "Bestand- und Priceabgleich",
+    "orderImport": "Auftragsimport"
   },
   "sku": {
     "title": "SKU",

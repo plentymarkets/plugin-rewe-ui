@@ -37,8 +37,7 @@
   "process": {
     "title": "Process",
     "itemExport": "Item export",
-    "stockExport": "Stock export",
-    "priceExport": "Price export",
+    "offerExport": "Stock and price update",
     "orderImport": "Order import"
   },
   "sku": {
