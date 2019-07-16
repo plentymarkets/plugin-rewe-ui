@@ -94,6 +94,7 @@ export class BasicComponent implements OnInit
         this.initBrandsButtonList();
         this.initSkuGeneration();
         this.initTaxCategories();
+        this.initBrandsUpdate();
         this.loadSettings();
     }
 
