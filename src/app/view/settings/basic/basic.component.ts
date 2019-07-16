@@ -165,9 +165,9 @@ export class BasicComponent implements OnInit
         this._loadingConfig.callLoadingEvent(true);
 
         let settings:any = {
-            orderImport:   this.orderImport,
-            offerExport:   this.offerExport,
-            itemExport:    this.itemExport,
+            orderImport: this.orderImport,
+            offerExport: this.offerExport,
+            itemExport: this.itemExport,
             commissionDefault: this.commission
         };
 
