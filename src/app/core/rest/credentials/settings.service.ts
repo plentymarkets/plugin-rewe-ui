@@ -58,12 +58,23 @@ export class SettingsService extends TerraBaseService {
                 })
         );
     }
-    
+
     public getTaxCategories():Observable<any> {
         this.setAuthorization();
         this.setHeader();
-        
+
         let url:string = this.url + '/tax_categories';
+
+        return this.mapRequest(
+            this.http.get(url, {headers: this.headers})
+        );
+    }
+
+    public getBrandsUpdatedAt():Observable<any> {
+        this.setAuthorization();
+        this.setHeader();
+
+        let url:string = this.url + '/brands';
 
         return this.mapRequest(
             this.http.get(url, {headers: this.headers})
@@ -75,6 +86,22 @@ export class SettingsService extends TerraBaseService {
         this.setHeader();
 
         let url:string = this.url + '/tax_categories';
+
+        return this.mapRequest(
+            this.http.post(url,
+                {},
+                {
+                    headers: this.headers,
+                    body:    null
+                })
+        );
+    }
+
+    public syncBrands():Observable<any> {
+        this.setAuthorization();
+        this.setHeader();
+
+        let url:string = this.url + '/brands';
 
         return this.mapRequest(
             this.http.post(url,

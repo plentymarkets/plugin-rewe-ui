@@ -24,6 +24,11 @@
       "taxCategories": "Steuerklassen",
       "lastUpdate": "Letzte Aktualisierung",
       "sync": "Synchronisieren"
+    },
+    "brands": {
+      "brands": "Marken",
+      "lastUpdate": "Letzte Aktualisierung",
+      "sync": "Synchronisieren"
     }
   },
   "shipping": {
@@ -49,6 +54,7 @@
     "saved": "Einstellungen gespeichert.",
     "notSaved": "Einstellungen nicht gespeichert.",
     "taxCategoriesFailed": "Aktualisierungsdatum der Steuerklassen nicht geladen.",
+    "brandsFailed": "Aktualisierungsdatum der Marken nicht geladen.",
     "syncSuccess": "Steuerklassen synchronisiert",
     "syncFailed": "Steuerklassen nicht synchronisiert"
   }

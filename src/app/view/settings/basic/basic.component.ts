@@ -44,9 +44,12 @@ export class BasicComponent implements OnInit
     private _selectableSkuGenerationList:Array<TerraSelectBoxValueInterface> = [];
     private _pickedSkuGenerationValue:number;
     private _syncTaxCategoriesButtonList:Array<TerraButtonInterface> = [];
+    private _syncBrandsButtonList:Array<TerraButtonInterface> = [];
 
     private taxCategories:any;
-    private lastUpdate:string;
+    private taxCategoriesLastUpdate:string;
+
+    private brandsLastUpdate:string;
 
     constructor(private _settingsService:SettingsService,
                 public translation:TranslationService,
@@ -59,7 +62,8 @@ export class BasicComponent implements OnInit
         this.orderImport = false;
 
         this.taxCategories = null;
-        this.lastUpdate = '';
+        this.taxCategoriesLastUpdate = '';
+        this.brandsLastUpdate = '';
 
         this.commission = 0;
     }
@@ -87,6 +91,7 @@ export class BasicComponent implements OnInit
     public ngOnInit():void
     {
         this.initTaxCategoriesButtonList();
+        this.initBrandsButtonList();
         this.initSkuGeneration();
         this.initTaxCategories();
         this.loadSettings();
@@ -97,6 +102,14 @@ export class BasicComponent implements OnInit
             icon: "icon-process_loop",
             tooltipText: this.translation.translate('basic.taxCategories.sync'),
             clickFunction: ():void => this.syncTaxCategories()
+        });
+    }
+
+    private initBrandsButtonList() {
+        this._syncBrandsButtonList.push({
+            icon: "icon-process_loop",
+            tooltipText: this.translation.translate('basic.brands.sync'),
+            clickFunction: ():void => this.syncBrands()
         });
     }
 
@@ -122,7 +135,7 @@ export class BasicComponent implements OnInit
         this._settingsService.getTaxCategories().subscribe(
             response =>
             {
-                this.lastUpdate = new Date(response.updatedAt).toLocaleString();
+                this.taxCategoriesLastUpdate = new Date(response.updatedAt).toLocaleString();
 
                 this._loadingConfig.callLoadingEvent(false);
             },
@@ -130,6 +143,23 @@ export class BasicComponent implements OnInit
             error =>
             {
                 this._alertConfig.callStatusEvent(this.translation.translate('settingsAlerts.taxCategoriesFailed') + ': ' + error.statusText, 'danger');
+                this._loadingConfig.callLoadingEvent(false);
+            }
+        );
+    }
+
+    private initBrandsUpdate() {
+        this._settingsService.getBrandsUpdatedAt().subscribe(
+            response =>
+            {
+                this.brandsLastUpdate = new Date(response.updatedAt).toLocaleString();
+
+                this._loadingConfig.callLoadingEvent(false);
+            },
+
+            error =>
+            {
+                this._alertConfig.callStatusEvent(this.translation.translate('settingsAlerts.brandsFailed') + ': ' + error.statusText, 'danger');
                 this._loadingConfig.callLoadingEvent(false);
             }
         );
@@ -232,7 +262,25 @@ export class BasicComponent implements OnInit
         this._settingsService.syncTaxCategories().subscribe(
             response =>
             {
-                this.lastUpdate = new Date(response.updatedAt).toLocaleString();
+                this.taxCategoriesLastUpdate = new Date(response.updatedAt).toLocaleString();
+
+                this._alertConfig.callStatusEvent(this.translation.translate('settingsAlert.syncSuccess'), 'success');
+                this._loadingConfig.callLoadingEvent(false);
+            },
+
+            error =>
+            {
+                this._alertConfig.callStatusEvent(this.translation.translate('settingsAlerts.syncFailed') + ': ' + error.statusText, 'danger');
+                this._loadingConfig.callLoadingEvent(false);
+            }
+        );
+    }
+
+    private syncBrands() {
+        this._settingsService.syncBrands().subscribe(
+            response =>
+            {
+                this.brandsLastUpdate = new Date(response.updatedAt).toLocaleString();
 
                 this._alertConfig.callStatusEvent(this.translation.translate('settingsAlert.syncSuccess'), 'success');
                 this._loadingConfig.callLoadingEvent(false);

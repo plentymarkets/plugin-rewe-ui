@@ -24,6 +24,11 @@
       "taxCategories": "TAX categories",
       "lastUpdate": "Last update",
       "sync": "Sync"
+    },
+    "brands": {
+      "brands": "Brands",
+      "lastUpdate": "Last update",
+      "sync": "Sync"
     }
   },
   "shipping": {
@@ -56,6 +61,7 @@
     "saved": "Settings saved.",
     "notSaved": "Settings not saved.",
     "taxCategoriesFailed": "Date of the last update of tax categories not loaded.",
+    "brandsFailed": "Date of the last update of brands not loaded.",
     "syncSuccess": "Tax categories synced",
     "syncFailed": "Tax categories not synced"
   }
