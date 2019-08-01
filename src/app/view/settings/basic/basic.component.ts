@@ -198,7 +198,7 @@ export class BasicComponent implements OnInit
             this.orderImport = responseList.settings.orderImport;
         }
 
-        if(!isNullOrUndefined(responseList.settings) && responseList.settings.offerExport === true)
+        if(!isNullOrUndefined(responseList.settings) && responseList.settings.stockExport === true)
         {
             this.viewChildStockExportCheckbox.value = responseList.settings.stockExport;
             this.stockExport = responseList.settings.stockExport;
