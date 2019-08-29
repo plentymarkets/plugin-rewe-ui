@@ -55,7 +55,9 @@
     "notSaved": "Einstellungen nicht gespeichert.",
     "taxCategoriesFailed": "Aktualisierungsdatum der Steuerklassen nicht geladen.",
     "brandsFailed": "Aktualisierungsdatum der Marken nicht geladen.",
-    "syncSuccess": "Steuerklassen synchronisiert",
-    "syncFailed": "Steuerklassen nicht synchronisiert"
+    "taxSyncSuccess": "Steuerklassen synchronisiert",
+    "taxSyncFailed": "Steuerklassen nicht synchronisiert",
+    "brandsSyncSuccess": "Marken synchronisiert",
+    "brandsSyncFailed": "Marken nicht synchronisiert"
   }
 }
