@@ -37,13 +37,6 @@
                 [(ngModel)]="commission">
             </terra-number-input>
         </terra-portlet>
-        <terra-portlet [inputPortletHeader]="'sku.title' | translate:lang">
-            <terra-select-box
-                [inputName]="'sku.creation' | translate:lang"
-				[inputListBoxValues]="_selectableSkuGenerationList"
-                [(ngModel)]="_pickedSkuGenerationValue">
-            </terra-select-box>
-        </terra-portlet>
         <terra-portlet
             [inputPortletHeader]="'basic.taxCategories.taxCategories' | translate:lang"
             [inputButtonList]="_syncTaxCategoriesButtonList">

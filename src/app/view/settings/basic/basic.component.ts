@@ -12,8 +12,7 @@ import { LoadingConfig } from '../../../core/config/loading.config';
 import { AlertConfig } from '../../../core/config/alert.config';
 import {
     TerraButtonInterface,
-    TerraCheckboxComponent,
-    TerraSelectBoxValueInterface
+    TerraCheckboxComponent
 } from "@plentymarkets/terra-components";
 import { SettingsService } from "../../../core/rest/credentials/settings.service";
 import { isNullOrUndefined } from "util";
@@ -41,8 +40,6 @@ export class BasicComponent implements OnInit
     private orderImport:boolean;
     private commission:number;
 
-    private _selectableSkuGenerationList:Array<TerraSelectBoxValueInterface> = [];
-    private _pickedSkuGenerationValue:number;
     private _syncTaxCategoriesButtonList:Array<TerraButtonInterface> = [];
     private _syncBrandsButtonList:Array<TerraButtonInterface> = [];
 
@@ -92,7 +89,6 @@ export class BasicComponent implements OnInit
     {
         this.initTaxCategoriesButtonList();
         this.initBrandsButtonList();
-        this.initSkuGeneration();
         this.initTaxCategories();
         this.initBrandsUpdate();
         this.loadSettings();
@@ -112,24 +108,6 @@ export class BasicComponent implements OnInit
             tooltipText: this.translation.translate('basic.brands.sync'),
             clickFunction: ():void => this.syncBrands()
         });
-    }
-
-    private initSkuGeneration():void
-    {
-        this._selectableSkuGenerationList.push(
-            {
-                value:   'variationId',
-                caption: this.translation.translate('sku.variationId'),
-            },
-            {
-                value:   'barcode',
-                caption: this.translation.translate('sku.barcode'),
-            },
-            {
-                value:   'variationNumber',
-                caption: this.translation.translate('sku.variationNumber'),
-            }
-        );
     }
 
     private initTaxCategories() {
@@ -219,11 +197,6 @@ export class BasicComponent implements OnInit
             this.viewChildPriceExportCheckbox.value = responseList.settings.priceExport;
             this.priceExport = responseList.settings.priceExport;
         }
-
-        if(!isNullOrUndefined(responseList.settings))
-        {
-            this._pickedSkuGenerationValue = responseList.settings.skuGeneration;
-        }
     }
 
     protected onSaveBtnClicked():void
@@ -241,7 +214,6 @@ export class BasicComponent implements OnInit
             stockExport:   this.stockExport,
             itemExport:    this.itemExport,
             priceExport:   this.priceExport,
-            skuGeneration: this._pickedSkuGenerationValue
         };
 
         this._settingsService.saveSettings(settings).subscribe(
