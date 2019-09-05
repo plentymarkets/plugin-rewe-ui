@@ -78,6 +78,10 @@ export class ShippingComponent implements OnInit
                 caption: "GLS"
             },
             {
+                value: "Deutsche-Post",
+                caption: "Deutsche Post"
+            },
+            {
                 value: "unknown",
                 caption: "unknown"
             },
