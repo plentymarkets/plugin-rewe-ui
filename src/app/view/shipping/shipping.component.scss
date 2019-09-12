@@ -1,0 +1,13 @@
+@media only screen and (max-width: 1500px) {
+  #shipping-box::ng-deep .info-box .info-box-inner .info-box-text {
+    width: 70%;
+    padding-bottom: 20%;
+  }
+}
+
+@media only screen and (min-width: 1501px) {
+  #shipping-box::ng-deep .info-box .info-box-inner .info-box-text {
+    width: 60%;
+    padding-bottom: 15%;
+  }
+}
