@@ -1,5 +1,5 @@
 {
-  "accessData": {
+  "account": {
     "title": "Access data",
     "username": "User name",
     "password": "Password",
@@ -7,19 +7,19 @@
     "tooltip": {
       "username": "Client ID",
       "password": "Client Secret",
-      "productKey": "Scope"
+      "productKey": "Project key"
     }
   },
   "basic": {
     "process": "Processes",
     "itemExport": "Item export",
+    "stockExport": "Stock update",
+    "priceExport": "Price update",
     "orderImport": "Order import",
     "commission": {
       "commission": "Commission",
       "commissionInPercent": "Commission in percent"
     },
-    "stockExport": "Stock update",
-    "priceExport": "Price update",
     "taxCategories": {
       "taxCategories": "TAX categories",
       "lastUpdate": "Last update",

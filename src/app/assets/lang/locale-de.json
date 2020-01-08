@@ -7,7 +7,7 @@
     "tooltip": {
       "username": "Client-ID",
       "password": "Client-Secret",
-      "productKey": "Scope"
+      "productKey": "Projektschlüssel"
     }
   },
   "basic": {
