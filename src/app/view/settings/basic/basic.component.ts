@@ -34,10 +34,14 @@ export class BasicComponent implements OnInit
     @ViewChild('viewChildPriceExportCheckbox') viewChildPriceExportCheckbox:TerraCheckboxComponent;
     @ViewChild('viewChildOrderImportCheckbox') viewChildOrderImportCheckbox:TerraCheckboxComponent;
 
+    @ViewChild('viewChildRealStockCheckbox') viewChildRealStockCheckbox:TerraCheckboxComponent;
+    @ViewChild('viewChildItemSettingsCheckbox') viewChildItemSettingsCheckbox:TerraCheckboxComponent;
+
     private itemExport:boolean;
     private stockExport:boolean;
     private priceExport:boolean;
     private orderImport:boolean;
+    private useRealStock:boolean;
     private commission:number;
 
     private _syncTaxCategoriesButtonList:Array<TerraButtonInterface> = [];
@@ -57,6 +61,8 @@ export class BasicComponent implements OnInit
         this.stockExport = false;
         this.priceExport = false;
         this.orderImport = false;
+
+        this.useRealStock = true;
 
         this.taxCategories = null;
         this.taxCategoriesLastUpdate = '';
@@ -85,12 +91,35 @@ export class BasicComponent implements OnInit
         this.orderImport = this.viewChildOrderImportCheckbox.value;
     }
 
+    protected setStockBehaviorCheckboxValueTrue():void
+    {
+        if (this.viewChildRealStockCheckbox.value == true) {
+            this.useRealStock = true;
+            this.viewChildItemSettingsCheckbox.value = false;
+        } else {
+            this.useRealStock = false;
+            this.viewChildItemSettingsCheckbox.value = true;
+        }
+    }
+    protected setStockBehaviorCheckboxValueFalse():void
+    {
+        if (this.viewChildItemSettingsCheckbox.value == true) {
+            this.useRealStock = false;
+            this.viewChildRealStockCheckbox.value = false;
+        } else {
+            this.useRealStock = true;
+            this.viewChildRealStockCheckbox.value = true;
+        }
+    }
+
     public ngOnInit():void
     {
         this.initTaxCategoriesButtonList();
         this.initBrandsButtonList();
         this.initTaxCategories();
         this.initBrandsUpdate();
+        this.viewChildRealStockCheckbox.value = true;
+        this.viewChildItemSettingsCheckbox.value = false;
         this.loadSettings();
     }
 
@@ -197,6 +226,13 @@ export class BasicComponent implements OnInit
             this.viewChildPriceExportCheckbox.value = responseList.settings.priceExport;
             this.priceExport = responseList.settings.priceExport;
         }
+
+        if(!isNullOrUndefined(responseList.settings.useRealStock))
+        {
+            this.viewChildRealStockCheckbox.value = responseList.settings.useRealStock;
+            this.viewChildItemSettingsCheckbox.value = !responseList.settings.useRealStock;
+            this.useRealStock = responseList.settings.useRealStock;
+        }
     }
 
     protected onSaveBtnClicked():void
@@ -214,6 +250,7 @@ export class BasicComponent implements OnInit
             stockExport:   this.stockExport,
             itemExport:    this.itemExport,
             priceExport:   this.priceExport,
+            useRealStock:  this.useRealStock
         };
 
         this._settingsService.saveSettings(settings).subscribe(

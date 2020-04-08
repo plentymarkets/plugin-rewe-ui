@@ -16,6 +16,11 @@
     "stockExport": "Bestandsabgleich",
     "priceExport": "Preisabgleich",
     "orderImport": "Auftragsimport",
+    "stockBehavior": "Bestandsverhalten",
+    "stock" : {
+      "realStock": "Tatsächlichen Bestand senden",
+      "itemSettings": "Bestand anhand der Artikeleinstellungen senden"
+    },
     "commission": {
       "commission": "Provision",
       "commissionInPercent": "Provision in Prozent"

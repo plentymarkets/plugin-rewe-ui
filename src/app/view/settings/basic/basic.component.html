@@ -31,6 +31,18 @@
                 #viewChildOrderImportCheckbox>
             </terra-checkbox>
         </terra-portlet>
+        <terra-portlet [inputPortletHeader]="'basic.stockBehavior' | translate:lang">
+            <terra-checkbox
+                    [inputCaption]="'basic.stock.realStock' | translate:lang"
+                    (valueChange)="setStockBehaviorCheckboxValueTrue()"
+                    #viewChildRealStockCheckbox>
+            </terra-checkbox>
+            <terra-checkbox
+                    [inputCaption]="'basic.stock.itemSettings' | translate:lang"
+                    (valueChange)="setStockBehaviorCheckboxValueFalse()"
+                    #viewChildItemSettingsCheckbox>
+            </terra-checkbox>
+        </terra-portlet>
         <terra-portlet [inputPortletHeader]="'basic.commission.commission' | translate:lang">
             <terra-number-input
                 [inputName]="'basic.commission.commissionInPercent' | translate:lang"
