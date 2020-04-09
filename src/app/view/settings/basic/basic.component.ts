@@ -12,10 +12,10 @@ import { LoadingConfig } from '../../../core/config/loading.config';
 import { AlertConfig } from '../../../core/config/alert.config';
 import {
     TerraButtonInterface,
-    TerraCheckboxComponent
-} from "@plentymarkets/terra-components";
-import { SettingsService } from "../../../core/rest/credentials/settings.service";
-import { isNullOrUndefined } from "util";
+    TerraCheckboxComponent, TerraSelectBoxValueInterface
+} from '@plentymarkets/terra-components';
+import { SettingsService } from '../../../core/rest/credentials/settings.service';
+import { isNullOrUndefined } from 'util';
 
 
 @Component({
@@ -29,13 +29,10 @@ export class BasicComponent implements OnInit
     @Language()
     public lang:string;
 
-    @ViewChild('viewChildItemExportCheckbox') viewChildItemExportCheckbox:TerraCheckboxComponent;
-    @ViewChild('viewChildStockExportCheckbox') viewChildStockExportCheckbox:TerraCheckboxComponent;
-    @ViewChild('viewChildPriceExportCheckbox') viewChildPriceExportCheckbox:TerraCheckboxComponent;
-    @ViewChild('viewChildOrderImportCheckbox') viewChildOrderImportCheckbox:TerraCheckboxComponent;
-
-    @ViewChild('viewChildRealStockCheckbox') viewChildRealStockCheckbox:TerraCheckboxComponent;
-    @ViewChild('viewChildItemSettingsCheckbox') viewChildItemSettingsCheckbox:TerraCheckboxComponent;
+    @ViewChild('viewChildItemExportCheckbox') public viewChildItemExportCheckbox:TerraCheckboxComponent;
+    @ViewChild('viewChildStockExportCheckbox') public viewChildStockExportCheckbox:TerraCheckboxComponent;
+    @ViewChild('viewChildPriceExportCheckbox') public viewChildPriceExportCheckbox:TerraCheckboxComponent;
+    @ViewChild('viewChildOrderImportCheckbox') public viewChildOrderImportCheckbox:TerraCheckboxComponent;
 
     private itemExport:boolean;
     private stockExport:boolean;
@@ -46,11 +43,13 @@ export class BasicComponent implements OnInit
 
     private _syncTaxCategoriesButtonList:Array<TerraButtonInterface> = [];
     private _syncBrandsButtonList:Array<TerraButtonInterface> = [];
+    private _stockCalculationList:Array<TerraSelectBoxValueInterface> = [];
 
     private taxCategories:any;
     private taxCategoriesLastUpdate:string;
 
     private brandsLastUpdate:string;
+    private considerVariationSettings:boolean;
 
     constructor(private _settingsService:SettingsService,
                 public translation:TranslationService,
@@ -91,84 +90,81 @@ export class BasicComponent implements OnInit
         this.orderImport = this.viewChildOrderImportCheckbox.value;
     }
 
-    protected setStockBehaviorCheckboxValueTrue():void
-    {
-        if (this.viewChildRealStockCheckbox.value == true) {
-            this.useRealStock = true;
-            this.viewChildItemSettingsCheckbox.value = false;
-        } else {
-            this.useRealStock = false;
-            this.viewChildItemSettingsCheckbox.value = true;
-        }
-    }
-    protected setStockBehaviorCheckboxValueFalse():void
-    {
-        if (this.viewChildItemSettingsCheckbox.value == true) {
-            this.useRealStock = false;
-            this.viewChildRealStockCheckbox.value = false;
-        } else {
-            this.useRealStock = true;
-            this.viewChildRealStockCheckbox.value = true;
-        }
-    }
-
     public ngOnInit():void
     {
         this.initTaxCategoriesButtonList();
         this.initBrandsButtonList();
         this.initTaxCategories();
         this.initBrandsUpdate();
-        this.viewChildRealStockCheckbox.value = true;
-        this.viewChildItemSettingsCheckbox.value = false;
+        this.initStockCalculation();
         this.loadSettings();
     }
 
-    private initTaxCategoriesButtonList() {
+    private initTaxCategoriesButtonList():void
+    {
         this._syncTaxCategoriesButtonList.push({
-            icon: "icon-process_loop",
+            icon: 'icon-process_loop',
             tooltipText: this.translation.translate('basic.taxCategories.sync'),
             clickFunction: ():void => this.syncTaxCategories()
         });
     }
 
-    private initBrandsButtonList() {
+    private initBrandsButtonList():void
+    {
         this._syncBrandsButtonList.push({
-            icon: "icon-process_loop",
+            icon: 'icon-process_loop',
             tooltipText: this.translation.translate('basic.brands.sync'),
             clickFunction: ():void => this.syncBrands()
         });
     }
 
-    private initTaxCategories() {
+    private initTaxCategories():void
+    {
         this._settingsService.getTaxCategories().subscribe(
-            response =>
+            (response:any) =>
             {
                 this.taxCategoriesLastUpdate = new Date(response.updatedAt).toLocaleString();
 
                 this._loadingConfig.callLoadingEvent(false);
             },
 
-            error =>
+            (error:any) =>
             {
-                this._alertConfig.callStatusEvent(this.translation.translate('settingsAlerts.taxCategoriesFailed') + ': ' + error.statusText, 'danger');
+                this._alertConfig.callStatusEvent(this.translation.translate('settingsAlerts.taxCategoriesFailed') +
+                    ': ' + error.statusText, 'danger');
                 this._loadingConfig.callLoadingEvent(false);
             }
         );
     }
 
-    private initBrandsUpdate() {
+    private initBrandsUpdate():void
+    {
         this._settingsService.getBrandsUpdatedAt().subscribe(
-            response =>
+            (response:any) =>
             {
                 this.brandsLastUpdate = new Date(response.updatedAt).toLocaleString();
 
                 this._loadingConfig.callLoadingEvent(false);
             },
 
-            error =>
+            (error:any) =>
             {
                 this._alertConfig.callStatusEvent(this.translation.translate('settingsAlerts.brandsFailed') + ': ' + error.statusText, 'danger');
                 this._loadingConfig.callLoadingEvent(false);
+            }
+        );
+    }
+
+    private initStockCalculation():void
+    {
+        this._stockCalculationList.push(
+            {
+                value: true,
+                caption: this.translation.translate('basic.exportStock.netStock')
+            },
+            {
+                value: false,
+                caption: this.translation.translate('basic.exportStock.variationLimitation')
             }
         );
     }
@@ -177,7 +173,7 @@ export class BasicComponent implements OnInit
     {
         this._loadingConfig.callLoadingEvent(true);
         this._settingsService.getSettings().subscribe(
-            response =>
+            (response:any) =>
             {
                 if(!isNullOrUndefined(response.settings))
                 {
@@ -217,7 +213,8 @@ export class BasicComponent implements OnInit
             this.itemExport = responseList.settings.itemExport;
         }
 
-        if(!isNullOrUndefined(responseList.settings) && !isNullOrUndefined(responseList.settings.commissionDefault)) {
+        if(!isNullOrUndefined(responseList.settings) && !isNullOrUndefined(responseList.settings.commissionDefault))
+        {
             this.commission = responseList.settings.commissionDefault;
         }
 
@@ -227,11 +224,9 @@ export class BasicComponent implements OnInit
             this.priceExport = responseList.settings.priceExport;
         }
 
-        if(!isNullOrUndefined(responseList.settings.useRealStock))
+        if(!isNullOrUndefined(responseList.settings) && !isNullOrUndefined(responseList.settings.considerVariationSettings))
         {
-            this.viewChildRealStockCheckbox.value = responseList.settings.useRealStock;
-            this.viewChildItemSettingsCheckbox.value = !responseList.settings.useRealStock;
-            this.useRealStock = responseList.settings.useRealStock;
+            this.considerVariationSettings = responseList.settings.considerVariationSettings;
         }
     }
 
@@ -250,17 +245,17 @@ export class BasicComponent implements OnInit
             stockExport:   this.stockExport,
             itemExport:    this.itemExport,
             priceExport:   this.priceExport,
-            useRealStock:  this.useRealStock
+            considerVariationSettings:   this.considerVariationSettings
         };
 
         this._settingsService.saveSettings(settings).subscribe(
-            response =>
+            () =>
             {
                 this._alertConfig.callStatusEvent(this.translation.translate('settingsAlert.saved'), 'success');
                 this._loadingConfig.callLoadingEvent(false);
             },
 
-            error =>
+            (error:any) =>
             {
                 this._alertConfig.callStatusEvent(this.translation.translate('settingsAlerts.notSaved') + ': ' + error.statusText, 'danger');
                 this._loadingConfig.callLoadingEvent(false);
@@ -268,9 +263,10 @@ export class BasicComponent implements OnInit
         );
     }
 
-    private syncTaxCategories() {
+    private syncTaxCategories():void
+    {
         this._settingsService.syncTaxCategories().subscribe(
-            response =>
+            (response:any) =>
             {
                 this.taxCategoriesLastUpdate = new Date(response.updatedAt).toLocaleString();
 
@@ -278,7 +274,7 @@ export class BasicComponent implements OnInit
                 this._loadingConfig.callLoadingEvent(false);
             },
 
-            error =>
+            (error:any) =>
             {
                 this._alertConfig.callStatusEvent(this.translation.translate('settingsAlerts.taxSyncFailed') + ': ' + error.statusText, 'danger');
                 this._loadingConfig.callLoadingEvent(false);
@@ -286,9 +282,10 @@ export class BasicComponent implements OnInit
         );
     }
 
-    private syncBrands() {
+    private syncBrands():void
+    {
         this._settingsService.syncBrands().subscribe(
-            response =>
+            (response:any) =>
             {
                 this.brandsLastUpdate = new Date(response.updatedAt).toLocaleString();
 
@@ -296,7 +293,7 @@ export class BasicComponent implements OnInit
                 this._loadingConfig.callLoadingEvent(false);
             },
 
-            error =>
+            (error:any) =>
             {
                 this._alertConfig.callStatusEvent(this.translation.translate('settingsAlerts.brandsSyncFailed') + ': ' + error.statusText, 'danger');
                 this._loadingConfig.callLoadingEvent(false);

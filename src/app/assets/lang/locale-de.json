@@ -16,10 +16,10 @@
     "stockExport": "Bestandsabgleich",
     "priceExport": "Preisabgleich",
     "orderImport": "Auftragsimport",
-    "stockBehavior": "Bestandsverhalten",
-    "stock" : {
-      "realStock": "Tatsächlichen Bestand senden",
-      "itemSettings": "Bestand anhand der Artikeleinstellungen senden"
+    "exportStock": {
+      "exportStock": "Bestand übertragen",
+      "variationLimitation": "Varianteneinstellung 'Beschränkung' berücksichtigen",
+      "netStock" : "Tatsächlichen Netto-Warenbestand übertragen"
     },
     "commission": {
       "commission": "Provision",

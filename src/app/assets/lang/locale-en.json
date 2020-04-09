@@ -16,10 +16,10 @@
     "stockExport": "Stock update",
     "priceExport": "Price update",
     "orderImport": "Order import",
-    "stockBehavior": "Stock behavior",
-    "stock" : {
-      "realStock": "Send real stock",
-      "itemSettings": "Send stock regarding the item settings"
+    "exportStock": {
+      "exportStock": "Export stock",
+      "variationLimitation": "Consider variation setting 'Limitation'",
+      "netStock" : "Export actual net stock"
     },
     "commission": {
       "commission": "Commission",

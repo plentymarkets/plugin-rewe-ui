@@ -31,18 +31,6 @@
                 #viewChildOrderImportCheckbox>
             </terra-checkbox>
         </terra-portlet>
-        <terra-portlet [inputPortletHeader]="'basic.stockBehavior' | translate:lang">
-            <terra-checkbox
-                    [inputCaption]="'basic.stock.realStock' | translate:lang"
-                    (valueChange)="setStockBehaviorCheckboxValueTrue()"
-                    #viewChildRealStockCheckbox>
-            </terra-checkbox>
-            <terra-checkbox
-                    [inputCaption]="'basic.stock.itemSettings' | translate:lang"
-                    (valueChange)="setStockBehaviorCheckboxValueFalse()"
-                    #viewChildItemSettingsCheckbox>
-            </terra-checkbox>
-        </terra-portlet>
         <terra-portlet [inputPortletHeader]="'basic.commission.commission' | translate:lang">
             <terra-number-input
                 [inputName]="'basic.commission.commissionInPercent' | translate:lang"
@@ -58,6 +46,14 @@
                 [inputPortletHeader]="'basic.brands.brands' | translate:lang"
                 [inputButtonList]="_syncBrandsButtonList">
             <b>{{'basic.brands.lastUpdate' | translate:lang}}:</b> {{brandsLastUpdate}}
+        </terra-portlet>
+        <terra-portlet
+                [inputPortletHeader]="'basic.exportStock.exportStock' | translate:lang">
+            <terra-select-box
+                    [inputListBoxValues]="_stockCalculationList"
+                    [(ngModel)]="considerVariationSettings"
+                    [inputName]="'basic.exportStock.exportStock' | translate:lang">
+            </terra-select-box>
         </terra-portlet>
     </div>
 </div>
