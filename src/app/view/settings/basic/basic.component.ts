@@ -38,7 +38,6 @@ export class BasicComponent implements OnInit
     private stockExport:boolean;
     private priceExport:boolean;
     private orderImport:boolean;
-    private useRealStock:boolean;
     private commission:number;
 
     private _syncTaxCategoriesButtonList:Array<TerraButtonInterface> = [];
@@ -60,8 +59,6 @@ export class BasicComponent implements OnInit
         this.stockExport = false;
         this.priceExport = false;
         this.orderImport = false;
-
-        this.useRealStock = true;
 
         this.taxCategories = null;
         this.taxCategoriesLastUpdate = '';
@@ -160,11 +157,11 @@ export class BasicComponent implements OnInit
         this._stockCalculationList.push(
             {
                 value: true,
-                caption: this.translation.translate('basic.exportStock.netStock')
+                caption: this.translation.translate('basic.exportStock.variationLimitation')
             },
             {
                 value: false,
-                caption: this.translation.translate('basic.exportStock.variationLimitation')
+                caption: this.translation.translate('basic.exportStock.netStock')
             }
         );
     }
