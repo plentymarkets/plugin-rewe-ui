@@ -16,6 +16,11 @@
     "stockExport": "Bestandsabgleich",
     "priceExport": "Preisabgleich",
     "orderImport": "Auftragsimport",
+    "exportStock": {
+      "exportStock": "Bestand übertragen",
+      "variationLimitation": "Varianteneinstellung 'Beschränkung' berücksichtigen",
+      "netStock" : "Tatsächlichen Netto-Warenbestand übertragen"
+    },
     "commission": {
       "commission": "Provision",
       "commissionInPercent": "Provision in Prozent"

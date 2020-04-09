@@ -47,5 +47,13 @@
                 [inputButtonList]="_syncBrandsButtonList">
             <b>{{'basic.brands.lastUpdate' | translate:lang}}:</b> {{brandsLastUpdate}}
         </terra-portlet>
+        <terra-portlet
+                [inputPortletHeader]="'basic.exportStock.exportStock' | translate:lang">
+            <terra-select-box
+                    [inputListBoxValues]="_stockCalculationList"
+                    [(ngModel)]="considerVariationSettings"
+                    [inputName]="'basic.exportStock.exportStock' | translate:lang">
+            </terra-select-box>
+        </terra-portlet>
     </div>
 </div>

@@ -16,6 +16,11 @@
     "stockExport": "Stock update",
     "priceExport": "Price update",
     "orderImport": "Order import",
+    "exportStock": {
+      "exportStock": "Export stock",
+      "variationLimitation": "Consider variation setting 'Limitation'",
+      "netStock" : "Export actual net stock"
+    },
     "commission": {
       "commission": "Commission",
       "commissionInPercent": "Commission in percent"
