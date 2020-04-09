@@ -160,11 +160,11 @@ export class BasicComponent implements OnInit
         this._stockCalculationList.push(
             {
                 value: true,
-                caption: this.translation.translate('basic.exportStock.netStock')
+                caption: this.translation.translate('basic.exportStock.variationLimitation')
             },
             {
                 value: false,
-                caption: this.translation.translate('basic.exportStock.variationLimitation')
+                caption: this.translation.translate('basic.exportStock.netStock')
             }
         );
     }
