@@ -33,11 +33,13 @@ export class BasicComponent implements OnInit
     @ViewChild('viewChildStockExportCheckbox') public viewChildStockExportCheckbox:TerraCheckboxComponent;
     @ViewChild('viewChildPriceExportCheckbox') public viewChildPriceExportCheckbox:TerraCheckboxComponent;
     @ViewChild('viewChildOrderImportCheckbox') public viewChildOrderImportCheckbox:TerraCheckboxComponent;
+    @ViewChild('viewChildContactCreationCheckbox') public viewChildContactCreationCheckbox:TerraCheckboxComponent;
 
     private itemExport:boolean;
     private stockExport:boolean;
     private priceExport:boolean;
     private orderImport:boolean;
+    private contactCreation:boolean;
     private commission:number;
 
     private _syncTaxCategoriesButtonList:Array<TerraButtonInterface> = [];
@@ -85,6 +87,11 @@ export class BasicComponent implements OnInit
     protected setOrderImportCheckboxValue():void
     {
         this.orderImport = this.viewChildOrderImportCheckbox.value;
+    }
+
+    protected setContactCreationCheckboxValue():void
+    {
+        this.contactCreation = this.viewChildContactCreationCheckbox.value;
     }
 
     public ngOnInit():void
@@ -225,6 +232,11 @@ export class BasicComponent implements OnInit
         {
             this.considerVariationSettings = responseList.settings.considerVariationSettings;
         }
+
+        if(!isNullOrUndefined(responseList.settings) && !isNullOrUndefined(responseList.settings.contactCreation))
+        {
+            this.contactCreation = responseList.settings.contactCreation;
+        }
     }
 
     protected onSaveBtnClicked():void
@@ -242,6 +254,7 @@ export class BasicComponent implements OnInit
             stockExport:   this.stockExport,
             itemExport:    this.itemExport,
             priceExport:   this.priceExport,
+            contactCreation: this.contactCreation,
             considerVariationSettings:   this.considerVariationSettings
         };
 

@@ -15,7 +15,10 @@
     "itemExport": "Artikelexport",
     "stockExport": "Bestandsabgleich",
     "priceExport": "Preisabgleich",
-    "orderImport": "Auftragsimport",
+    "orderImport": {
+      "orderImport": "Auftragsimport",
+      "deactivateContactCreation": "Deactivate contact creation"
+    },
     "exportStock": {
       "exportStock": "Bestand übertragen",
       "variationLimitation": "Varianteneinstellung 'Beschränkung' berücksichtigen",

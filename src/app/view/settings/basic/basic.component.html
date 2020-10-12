@@ -26,9 +26,16 @@
                 #viewChildPriceExportCheckbox>
             </terra-checkbox>
             <terra-checkbox
-                [inputCaption]="'basic.orderImport' | translate:lang"
+                [inputCaption]="'basic.orderImport.orderImport' | translate:lang"
                 (valueChange)="setOrderImportCheckboxValue()"
                 #viewChildOrderImportCheckbox>
+            </terra-checkbox>
+        </terra-portlet>
+        <terra-portlet [inputPortletHeader]="'basic.orderImport.orderImport' | translate:lang">
+            <terra-checkbox
+                    [inputCaption]="'basic.orderImport.deactivateContactCreation' | translate:lang"
+                    (valueChange)="setContactCreationCheckboxValue()"
+                    #viewChildContactCreationCheckbox>
             </terra-checkbox>
         </terra-portlet>
         <terra-portlet [inputPortletHeader]="'basic.commission.commission' | translate:lang">
