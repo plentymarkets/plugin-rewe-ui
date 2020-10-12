@@ -17,7 +17,7 @@
     "priceExport": "Preisabgleich",
     "orderImport": {
       "orderImport": "Auftragsimport",
-      "deactivateContactCreation": "Deactivate contact creation"
+      "deactivateContactCreation": "Kontakterstellung deaktivieren"
     },
     "exportStock": {
       "exportStock": "Bestand übertragen",
