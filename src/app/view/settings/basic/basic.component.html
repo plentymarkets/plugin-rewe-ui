@@ -34,8 +34,8 @@
         <terra-portlet [inputPortletHeader]="'basic.orderImport.orderImport' | translate:lang">
             <terra-checkbox
                     [inputCaption]="'basic.orderImport.deactivateContactCreation' | translate:lang"
-                    (valueChange)="setContactCreationCheckboxValue()"
-                    #viewChildContactCreationCheckbox>
+                    (valueChange)="setDisableContactCreationCheckboxValue()"
+                    #viewChildDisableContactCreationCheckbox>
             </terra-checkbox>
         </terra-portlet>
         <terra-portlet [inputPortletHeader]="'basic.commission.commission' | translate:lang">
