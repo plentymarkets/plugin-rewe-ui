@@ -169,7 +169,6 @@ export class BasicComponent implements OnInit
 
     private mapSettings(responseList:any):void
     {
-        console.log(1, responseList);
         if(!isNullOrUndefined(responseList))
         {
             this.orderImport = responseList.settings.orderImport;
