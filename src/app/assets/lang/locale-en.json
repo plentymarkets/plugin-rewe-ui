@@ -15,7 +15,10 @@
     "itemExport": "Item export",
     "stockExport": "Stock update",
     "priceExport": "Price update",
-    "orderImport": "Order import",
+    "orderImport": {
+      "orderImport": "Order import",
+      "deactivateContactCreation": "Deactivate contact creation"
+    },
     "exportStock": {
       "exportStock": "Export stock",
       "variationLimitation": "Consider variation setting 'Limitation'",

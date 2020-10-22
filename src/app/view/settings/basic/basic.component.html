@@ -1,34 +1,36 @@
 <!-- TOOLBAR -->
 <terra-base-toolbar>
     <terra-button
-        [inputIsDisabled]="isLoading"
+        [inputIsDisabled]="!isLoaded"
         [inputIcon]="'icon-save'"
         (outputClicked)="onSaveBtnClicked()">
     </terra-button>
 </terra-base-toolbar>
 
-<div class="container-fluid">
+<div class="container-fluid" *ngIf="isLoaded">
     <div class="col-xs-12 col-md-6 col-lg-6">
         <terra-portlet [inputPortletHeader]="'basic.process' | translate:lang">
             <terra-checkbox
                 [inputCaption]="'basic.itemExport' | translate:lang"
-                (valueChange)="setItemExportCheckboxValue()"
-                #viewChildItemExportCheckbox>
+                [(ngModel)]="itemExport">
             </terra-checkbox>
             <terra-checkbox
                 [inputCaption]="'basic.stockExport' | translate:lang"
-                (valueChange)="setStockExportCheckboxValue()"
-                #viewChildStockExportCheckbox>
+                [(ngModel)]="stockExport">
             </terra-checkbox>
             <terra-checkbox
                 [inputCaption]="'basic.priceExport' | translate:lang"
-                (valueChange)="setPriceExportCheckboxValue()"
-                #viewChildPriceExportCheckbox>
+                [(ngModel)]="priceExport">
             </terra-checkbox>
             <terra-checkbox
-                [inputCaption]="'basic.orderImport' | translate:lang"
-                (valueChange)="setOrderImportCheckboxValue()"
-                #viewChildOrderImportCheckbox>
+                [inputCaption]="'basic.orderImport.orderImport' | translate:lang"
+                [(ngModel)]="orderImport">
+            </terra-checkbox>
+        </terra-portlet>
+        <terra-portlet [inputPortletHeader]="'basic.orderImport.orderImport' | translate:lang">
+            <terra-checkbox
+                    [inputCaption]="'basic.orderImport.deactivateContactCreation' | translate:lang"
+                    [(ngModel)]="disableContactCreation">
             </terra-checkbox>
         </terra-portlet>
         <terra-portlet [inputPortletHeader]="'basic.commission.commission' | translate:lang">

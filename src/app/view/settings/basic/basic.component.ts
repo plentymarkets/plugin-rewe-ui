@@ -1,7 +1,6 @@
 import {
     Component,
     OnInit,
-    ViewChild,
 } from '@angular/core';
 import {
     Language,
@@ -11,8 +10,7 @@ import {
 import { LoadingConfig } from '../../../core/config/loading.config';
 import { AlertConfig } from '../../../core/config/alert.config';
 import {
-    TerraButtonInterface,
-    TerraCheckboxComponent, TerraSelectBoxValueInterface
+    TerraButtonInterface, TerraSelectBoxValueInterface
 } from '@plentymarkets/terra-components';
 import { SettingsService } from '../../../core/rest/credentials/settings.service';
 import { isNullOrUndefined } from 'util';
@@ -29,15 +27,12 @@ export class BasicComponent implements OnInit
     @Language()
     public lang:string;
 
-    @ViewChild('viewChildItemExportCheckbox') public viewChildItemExportCheckbox:TerraCheckboxComponent;
-    @ViewChild('viewChildStockExportCheckbox') public viewChildStockExportCheckbox:TerraCheckboxComponent;
-    @ViewChild('viewChildPriceExportCheckbox') public viewChildPriceExportCheckbox:TerraCheckboxComponent;
-    @ViewChild('viewChildOrderImportCheckbox') public viewChildOrderImportCheckbox:TerraCheckboxComponent;
-
+    public isLoaded:boolean = false;
     private itemExport:boolean;
     private stockExport:boolean;
     private priceExport:boolean;
     private orderImport:boolean;
+    private disableContactCreation:boolean;
     private commission:number;
 
     private _syncTaxCategoriesButtonList:Array<TerraButtonInterface> = [];
@@ -59,32 +54,13 @@ export class BasicComponent implements OnInit
         this.stockExport = false;
         this.priceExport = false;
         this.orderImport = false;
+        this.disableContactCreation = false;
 
         this.taxCategories = null;
         this.taxCategoriesLastUpdate = '';
         this.brandsLastUpdate = '';
 
         this.commission = 0;
-    }
-
-    protected setItemExportCheckboxValue():void
-    {
-        this.itemExport = this.viewChildItemExportCheckbox.value;
-    }
-
-    protected setStockExportCheckboxValue():void
-    {
-        this.stockExport = this.viewChildStockExportCheckbox.value;
-    }
-
-    protected setPriceExportCheckboxValue():void
-    {
-        this.priceExport = this.viewChildPriceExportCheckbox.value;
-    }
-
-    protected setOrderImportCheckboxValue():void
-    {
-        this.orderImport = this.viewChildOrderImportCheckbox.value;
     }
 
     public ngOnInit():void
@@ -168,6 +144,7 @@ export class BasicComponent implements OnInit
 
     public loadSettings():void
     {
+        this.isLoaded = false;
         this._loadingConfig.callLoadingEvent(true);
         this._settingsService.getSettings().subscribe(
             (response:any) =>
@@ -177,6 +154,7 @@ export class BasicComponent implements OnInit
                     this.mapSettings(response);
                 }
 
+                this.isLoaded = true;
                 this._loadingConfig.callLoadingEvent(false);
             },
             (error:any) =>
@@ -184,7 +162,6 @@ export class BasicComponent implements OnInit
                 this._loadingConfig.callLoadingEvent(false);
 
                 let message:any = error.json();
-
                 this._alertConfig.callStatusEvent(message.error.code + ' ' + message.error.message, 'danger');
             }
         );
@@ -192,38 +169,15 @@ export class BasicComponent implements OnInit
 
     private mapSettings(responseList:any):void
     {
-        if(!isNullOrUndefined(responseList.settings) && responseList.settings.orderImport === true)
+        if(!isNullOrUndefined(responseList))
         {
-            this.viewChildOrderImportCheckbox.value = responseList.settings.orderImport;
             this.orderImport = responseList.settings.orderImport;
-        }
-
-        if(!isNullOrUndefined(responseList.settings) && responseList.settings.stockExport === true)
-        {
-            this.viewChildStockExportCheckbox.value = responseList.settings.stockExport;
             this.stockExport = responseList.settings.stockExport;
-        }
-
-        if(!isNullOrUndefined(responseList.settings) && responseList.settings.itemExport === true)
-        {
-            this.viewChildItemExportCheckbox.value = responseList.settings.itemExport;
             this.itemExport = responseList.settings.itemExport;
-        }
-
-        if(!isNullOrUndefined(responseList.settings) && !isNullOrUndefined(responseList.settings.commissionDefault))
-        {
             this.commission = responseList.settings.commissionDefault;
-        }
-
-        if(!isNullOrUndefined(responseList.settings) && responseList.settings.priceExport === true)
-        {
-            this.viewChildPriceExportCheckbox.value = responseList.settings.priceExport;
             this.priceExport = responseList.settings.priceExport;
-        }
-
-        if(!isNullOrUndefined(responseList.settings) && !isNullOrUndefined(responseList.settings.considerVariationSettings))
-        {
             this.considerVariationSettings = responseList.settings.considerVariationSettings;
+            this.disableContactCreation = responseList.settings.disableContactCreation;
         }
     }
 
@@ -242,6 +196,7 @@ export class BasicComponent implements OnInit
             stockExport:   this.stockExport,
             itemExport:    this.itemExport,
             priceExport:   this.priceExport,
+            disableContactCreation: this.disableContactCreation,
             considerVariationSettings:   this.considerVariationSettings
         };
 
